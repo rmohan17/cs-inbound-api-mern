@@ -1,16 +1,16 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const csInboundController = require("./controller/csInboundController");
-const app = express();
 const config = require("./config/config");
+const express = require("express");
+const app = express();
 const port = config.PORT;
+const csInboundController = require("./controller/csInboundController");
 
-app.listen(port, () => {
-    console.log(`server is running at port :${port}`);
+app.listen(port,()=>{
+    console.log(`server is running at port ---->${port}`)
 });
-// app.use(bodyParser.urlencoded({
-//     extended: true
-//   }));
+app.get("/",(req,res)=>{
+res.send("Hello From server");
+})
+
 app.use(express.json()) ;
 app.use("/cs/inbound", csInboundController);
 app.get("/", (req, res) => {
